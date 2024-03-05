@@ -8,15 +8,15 @@ USE employee_tracker_db;
 -- Creates the table "produce" within employee_tracker_db --
 CREATE TABLE department (
   id INT NOT NULL,
-  name VARCHAR(30) NOT NULL
+  name VARCHAR(30) NOT NULL,
   PRIMARY KEY (id)
 );
 
 CREATE TABLE role (
   id INT,
   title VARCHAR(30) NOT NULL,
+  department_id INT,
   salary DECIMAL NOT NULL,
-  department_id: INT NOT NULL
   FOREIGN KEY (department_id),
   REFERENCES department_id
 );

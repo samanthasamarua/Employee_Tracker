@@ -2,6 +2,8 @@
 const express = require('express');
 const sequelize = require('./config/connection');
 const inquirer = require('inquirer');
+
+
 const { viewDepartments, viewRoles, viewEmployees } = require('./Assets/viewQuery'); // Require the viewquery module
 const { addDepartment, addRole, addEmployee } = require('./Assets/addQuery');
 const { updateEmployeeRole } = require('./Assets/updateQuery');
@@ -31,7 +33,7 @@ function promptQuestions() {
         choices: [
           'View All Departments',
           'View All Roles',
-          'View All employees', 
+          'View All Employees', 
           'Add a Department',
           'Add a Role', 
           'Add an Employee',
@@ -93,7 +95,7 @@ function promptQuestions() {
               process.exit(0); // Quit the application
             }
           });
-      } else if (Prompts.includes('View All mployees')) {
+      } else if (Prompts.includes('View All Employees')) {
           viewEmployees();
           inquirer
           .prompt([
@@ -106,6 +108,7 @@ function promptQuestions() {
               ],
             },
           ])
+
           .then((answer) => {
             if (answer.NextAction === 'Execute another action') {
               promptQuestions(); // Call the function to prompt the user again
@@ -116,13 +119,14 @@ function promptQuestions() {
               process.exit(0); // Quit the application
             }
           });
+
       } else if (Prompts.includes('Add a Department')) {
           addDepartment(promptQuestions);
    
       } else if (Prompts.includes('Add a Role')) {
           addRole(promptQuestions); 
           
-      } else if (Prompts.includes('Add an employee')) {
+      } else if (Prompts.includes('Add an Employee')) {
           addEmployee(promptQuestions);
 
       } else if (Prompts.includes('Delete a Department')) {
@@ -134,7 +138,7 @@ function promptQuestions() {
       } else if (Prompts.includes('Delete an Employee')) {
         deleteEmployee(promptQuestions);
 
-      } else if (Prompts.includes('Update an employee role')) {
+      } else if (Prompts.includes('Update an Employee Role')) {
           await updateEmployeeRole(); 
           inquirer
           .prompt([

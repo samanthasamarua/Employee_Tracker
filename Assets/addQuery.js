@@ -100,12 +100,15 @@ async function addEmployee(promptQuestions) {
   console.log('Adding an Employee..');
 
   try {
+    // Fetch roles from the database
     const roleSQL = `SELECT id, title FROM role`;
     const roles = await query(roleSQL);
 
+    // Fetch employees from the database to select a manager
     const employeeSQL = `SELECT id, CONCAT(first_name, ' ', last_name) AS full_name FROM employee`;
     const employees = await query(employeeSQL);
 
+    // Create choices for roles and managers
     const roleChoices = roles.map(role => ({
       name: role.title,
       value: role.id,
@@ -116,8 +119,10 @@ async function addEmployee(promptQuestions) {
       value: employee.id,
     }));
 
+    // Add an option for no manager
     managerChoices.unshift({ name: 'None', value: null });
 
+    // Prompt user for employee details
     const answers = await inquirer.prompt([
       {
         type: 'input',
@@ -145,29 +150,32 @@ async function addEmployee(promptQuestions) {
 
     const { firstName, lastName, roleId, managerId } = answers;
 
+    // Insert employee details into the database
     const sql = `INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)`;
     await query(sql, [firstName, lastName, roleId, managerId]);
     console.log('Employee added successfully!');
-        // Prompt for the next action
-        inquirer.prompt([
-          {
-            type: 'list',
-            message: 'What would you like to do next?',
-            name: 'NextAction',
-            choices: ['Return to Main Menu', 'Quit'],
-          },
-        ]).then((answer) => {
-          if (answer.NextAction === 'Return to Main Menu') {
-            promptQuestions(); // Call the function to display the main menu
-          } else {
-            console.log('Exiting application...');
-            process.exit(0); // Quit the application
-          }
-        });
+    
+    // Prompt for the next action
+    inquirer.prompt([
+      {
+        type: 'list',
+        message: 'What would you like to do next?',
+        name: 'NextAction',
+        choices: ['Return to Main Menu', 'Quit'],
+      },
+    ]).then((answer) => {
+      if (answer.NextAction === 'Return to Main Menu') {
+        promptQuestions(); // Call the function to display the main menu
+      } else {
+        console.log('Exiting application...');
+        process.exit(0); // Quit the application
+      }
+    });
   } catch (err) {
     console.error('Error adding employee:', err);
   }
 }
+
 
 module.exports = {
   addDepartment,

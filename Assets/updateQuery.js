@@ -35,12 +35,6 @@ async function updateEmployeeRole() {
                 name: 'newRoleId',
                 choices: roleChoices,
             },
-            {
-                type: 'list',
-                message: "Select the employee's new manager:",
-                name: 'newManagerId',
-                choices: managerChoices,
-            },
         ]);
 
         const { employeeId, newRoleId } = answers;

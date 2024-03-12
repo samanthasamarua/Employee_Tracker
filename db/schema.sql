@@ -18,7 +18,7 @@ CREATE TABLE role (
    title VARCHAR(30) NOT NULL,
    department_id INT,
    salary DECIMAL NOT NULL,
-   FOREIGN KEY (department_id) REFERENCES department(id)
+   FOREIGN KEY (department_id) REFERENCES department(id) ON DELETE CASCADE
 );
 
 -- Creates the table "employee" within employee_tracker_db --
@@ -28,5 +28,5 @@ CREATE TABLE employee (
    last_name VARCHAR(30) NOT NULL,
    role_id INT NOT NULL,
    manager_id INT,
-   FOREIGN KEY (role_id) REFERENCES role(id)
+   FOREIGN KEY (manager_id) REFERENCES employee(id) ON DELETE CASCADE
 );

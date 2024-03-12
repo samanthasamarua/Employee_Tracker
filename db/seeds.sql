@@ -1,29 +1,26 @@
 INSERT INTO department (id, name)
-VALUES (001, "Sales"),
-       (002, "Engineering"),
-       (003, "Finance"),
-       (004, "Legal"),
-     ;
+VALUES (1, 'Sales'),
+       (2, 'Engineering'),
+       (3, 'Finance'),
+       (4, 'Legal');
 
 INSERT INTO role (id, title, department_id, salary)
-VALUES (001, "Sales Lead", "Sales", "100,000"),
-       (002, "Salesperson", "Sales", "80,000"),
-       (003, "Lead Engineer", "Engineering", "150,000"),
-       (004, "Software Engineer", "Finance", "120,000"),
-       (005, "Accounts Manager", "Finance", "160,000"),
-       (006, "Accountant", "Finance", "125,000"),
-       (007, "Legal Team Lead", "Legal" "250,000"),
-       (008, "Lawyer", "Legal" "190,000"),
-     ;
+VALUES (1, 'Sales Lead', 1, 100000),
+       (2, 'Salesperson', 1, 80000),
+       (3, 'Lead Engineer', 2, 150000),
+       (4, 'Software Engineer', 2, 120000),
+       (5, 'Accounts Manager', 3, 160000),
+       (6, 'Accountant', 3, 125000),
+       (7, 'Legal Team Lead', 4, 250000),
+       (8, 'Lawyer', 4, 190000);
 
-INSERT INTO role (id, first_name, last_name, role_id, manager_id)
-VALUES (001, "John", "Doe", "Sales Lead", "Sales", "100,000", "null"),
-       (002, "Mike", "Chan","Salesperson", "Sales", "80,000", "John Doe"),
-       (003, "Ashley", "Rodriguez","Lead Engineer", "Engineering", "150,000", "null"),
-       (004, "Kevin", "Tupik","Software Engineer", "Finance", "120,000", "Ashley Rodriguez"),
-       (005, "Kunal", "Singh","Accounts Manager", "Finance", "160,000", "null"),
-       (006, "Malia", "Brown","Accountant", "Finance", "125,000", "Kunal Singh"),
-       (007, "Sarah", "Lourd","Legal Team Lead", "Legal" "250,000", "null"),
-       (008, "Tom", "Allen","Lawyer", "Legal" "190,000", "Sarah Lourd"),
-     ;
-       
+INSERT INTO employee (id, first_name, last_name, role_id, manager_id)
+VALUES (1, 'John', 'Doe', 1, null),
+       (2, 'Mike', 'Chan', 2, 1),
+       (3, 'Ashley', 'Rodriguez', 3, null),
+       (4, 'Kevin', 'Tupik', 4, 3),
+       (5, 'Kunal', 'Singh', 5, null),
+       (6, 'Malia', 'Brown', 6, 5),
+       (7, 'Sarah', 'Lourd', 7, null),
+       (8, 'Tom', 'Allen', 8, 7);
+

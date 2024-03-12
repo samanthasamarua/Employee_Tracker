@@ -1,6 +1,5 @@
 const query = require('./db');
 const inquirer = require('inquirer');
-const {promptQuestions} = require('../server')
 
 async function addDepartment(promptQuestions) {
   console.log('Adding a Department..');

@@ -1,6 +1,7 @@
 const query = require('./db');
 const inquirer = require('inquirer');
 
+
 async function updateEmployeeRole() {
     console.log('Updating an Employee Role..');
 

@@ -5,6 +5,7 @@ const inquirer = require('inquirer');
 const { viewDepartments, viewRoles, viewEmployees } = require('./Assets/viewQuery'); // Require the viewquery module
 const { addDepartment, addRole, addEmployee } = require('./Assets/addQuery');
 const { updateEmployeeRole } = require('./Assets/updateQuery');
+const { deleteDepartment, deleteRole, deleteEmployee } = require('./Assets/deleteQuery');
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -29,12 +30,15 @@ function promptQuestions() {
         name: 'Prompts',
         choices: [
           'View All Departments',
-          'View all Roles',
-          'View all employees', 
+          'View All Roles',
+          'View All employees', 
           'Add a Department',
           'Add a Role', 
-          'Add an employee', 
-          'Update an employee role',
+          'Add an Employee',
+          'Delete a Department',
+          'Delete a Role', 
+          'Delete an Employee', 
+          'Update an Employee Role',
           'Return to Main Menu', 
           'Quit',
         ],
@@ -66,7 +70,7 @@ function promptQuestions() {
               process.exit(0); // Quit the application
             }
           });
-      } else if (Prompts.includes('View all Roles')) {
+      } else if (Prompts.includes('View All Roles')) {
           viewRoles();
           inquirer
           .prompt([
@@ -89,7 +93,7 @@ function promptQuestions() {
               process.exit(0); // Quit the application
             }
           });
-      } else if (Prompts.includes('View all employees')) {
+      } else if (Prompts.includes('View All mployees')) {
           viewEmployees();
           inquirer
           .prompt([
@@ -119,7 +123,17 @@ function promptQuestions() {
           addRole(promptQuestions); 
           
       } else if (Prompts.includes('Add an employee')) {
-          addEmployee(promptQuestions); 
+          addEmployee(promptQuestions);
+
+      } else if (Prompts.includes('Delete a Department')) {
+        deleteDepartment(promptQuestions);
+
+      } else if (Prompts.includes('Delete a Role')) {
+        deleteRole(promptQuestions);
+
+      } else if (Prompts.includes('Delete an Employee')) {
+        deleteEmployee(promptQuestions);
+
       } else if (Prompts.includes('Update an employee role')) {
           await updateEmployeeRole(); 
           inquirer

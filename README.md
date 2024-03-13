@@ -44,11 +44,11 @@ To access the aplication, follow instructions below:
 
 Image below displays the application's main menu
 
-<img src="./Assets/Images/Employee_tracker_homepage.jpg" alt="Employee Tracker Homepage" width="500" height="600">
+<img src="./Assets/Images/Employee_tracker_homepage.jpg" alt="Employee Tracker Homepage" width="800" height="500">
 
 Image below displays an example of the prompts and result tables:
 
-<img src="./Assets/Images/Example.png" alt="Employee Tracker Application" width="500" height="600">
+<img src="./Assets/Images/Example.png" alt="Employee Tracker Application" width="800" height="500">
 
 
 # Walkthrough Video Link

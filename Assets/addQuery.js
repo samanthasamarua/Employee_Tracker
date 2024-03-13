@@ -1,6 +1,7 @@
 const query = require('./db');
 const inquirer = require('inquirer');
 
+// Function for adding department
 async function addDepartment(promptQuestions) {
   console.log('Adding a Department..');
 
@@ -18,7 +19,7 @@ async function addDepartment(promptQuestions) {
     const sql = `INSERT INTO department (name) VALUES (?)`;
     await query(sql, [departmentName]);
     console.log('Department added successfully!');
-    // Prompt for the next action
+
     inquirer.prompt([
       {
         type: 'list',
@@ -28,10 +29,9 @@ async function addDepartment(promptQuestions) {
       },
     ]).then((answer) => {
       if (answer.NextAction === 'Return to Main Menu') {
-        promptQuestions(); // Call the function to display the main menu
-      } else {
+        promptQuestions(); 
         console.log('Exiting application...');
-        process.exit(0); // Quit the application
+        process.exit(0);
       }
     });
   } catch (err) {
@@ -39,6 +39,7 @@ async function addDepartment(promptQuestions) {
   }
 }
 
+// Function to add roles
 async function addRole(promptQuestions) {
   console.log('Adding a Role..');
 
@@ -75,7 +76,7 @@ async function addRole(promptQuestions) {
     const sql = `INSERT INTO role (title, salary, department_id) VALUES (?, ?, ?)`;
     await query(sql, [roleName, salary, departmentId]);
     console.log('Role added successfully!');
-        // Prompt for the next action
+        
         inquirer.prompt([
           {
             type: 'list',
@@ -85,10 +86,10 @@ async function addRole(promptQuestions) {
           },
         ]).then((answer) => {
           if (answer.NextAction === 'Return to Main Menu') {
-            promptQuestions(); // Call the function to display the main menu
+            promptQuestions(); 
           } else {
             console.log('Exiting application...');
-            process.exit(0); // Quit the application
+            process.exit(0); 
           }
         });
   } catch (err) {
@@ -96,6 +97,7 @@ async function addRole(promptQuestions) {
   }
 }
 
+// Function to add employees
 async function addEmployee(promptQuestions) {
   console.log('Adding an Employee..');
 
@@ -122,7 +124,6 @@ async function addEmployee(promptQuestions) {
     // Add an option for no manager
     managerChoices.unshift({ name: 'None', value: null });
 
-    // Prompt user for employee details
     const answers = await inquirer.prompt([
       {
         type: 'input',
@@ -150,12 +151,11 @@ async function addEmployee(promptQuestions) {
 
     const { firstName, lastName, roleId, managerId } = answers;
 
-    // Insert employee details into the database
+   
     const sql = `INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)`;
     await query(sql, [firstName, lastName, roleId, managerId]);
     console.log('Employee added successfully!');
     
-    // Prompt for the next action
     inquirer.prompt([
       {
         type: 'list',

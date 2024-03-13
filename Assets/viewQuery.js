@@ -1,5 +1,6 @@
 const query = require('./db'); 
 
+// Function to view departments
 async function viewDepartments() {
   try {
       const sql = `SELECT id, name AS Department FROM department`;
@@ -31,6 +32,7 @@ async function viewRoles () {
 
 };
 
+// Function to view employee
 async function viewEmployees() {
     try {
         const sql = `

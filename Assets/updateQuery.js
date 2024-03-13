@@ -2,6 +2,7 @@ const query = require('./db');
 const inquirer = require('inquirer');
 
 
+// Function to update employee role
 async function updateEmployeeRole() {
     console.log('Updating an Employee Role..');
 
@@ -42,7 +43,7 @@ async function updateEmployeeRole() {
         const sql = `UPDATE employee SET role_id = ? WHERE id = ?`;
         await query(sql, [newRoleId, employeeId]);
         console.log('Employee role updated successfully!');
-        // Assuming promptQuestions is defined and handles the main menu
+      
     } catch (err) {
         console.error('Error updating employee role:', err);
     }

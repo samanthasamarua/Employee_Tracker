@@ -1,10 +1,10 @@
-// Added Dependencies
+// Importing dependencies
 const express = require('express');
 const sequelize = require('./config/connection');
 const inquirer = require('inquirer');
 
-
-const { viewDepartments, viewRoles, viewEmployees } = require('./Assets/viewQuery'); // Require the viewquery module
+// Importing functions for viewing, adding, updating and deleting data
+const { viewDepartments, viewRoles, viewEmployees } = require('./Assets/viewQuery'); 
 const { addDepartment, addRole, addEmployee } = require('./Assets/addQuery');
 const { updateEmployeeRole } = require('./Assets/updateQuery');
 const { deleteDepartment, deleteRole, deleteEmployee } = require('./Assets/deleteQuery');
@@ -16,12 +16,11 @@ const app = express();
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-
+// Synchronise sequelize models with the database
 sequelize.sync({ force: false }).then(() => {
-  // Call app.listen after all routes and middleware are defined
   app.listen(PORT, () => console.log('Now listening'));
 });
-
+// Main interface for interacting with the employee tracker applications
 function promptQuestions() {
   console.log('Welcome to the Employee Tracker')
   inquirer
@@ -63,13 +62,11 @@ function promptQuestions() {
             },
           ])
           .then((answer) => {
-            if (answer.NextAction === 'Execute another action') {
-              promptQuestions(); // Call the function to prompt the user again
-            } else if (answer.NextAction === 'Return to main menu') {
-              promptQuestions(); // Call the function to display the main menu
-            } else {
+            if (answer.NextAction === 'Return to main menu') {
+              promptQuestions(); 
+            } else if (answer.NextAction === 'Quit') {
               console.log('Exiting application...');
-              process.exit(0); // Quit the application
+              process.exit(0); 
             }
           });
       } else if (Prompts.includes('View All Roles')) {
@@ -86,13 +83,11 @@ function promptQuestions() {
             },
           ])
           .then((answer) => {
-            if (answer.NextAction === 'Execute another action') {
-              promptQuestions(); // Call the function to prompt the user again
-            } else if (answer.NextAction === 'Return to main menu') {
-              promptQuestions(); // Call the function to display the main menu
-            } else {
+            if (answer.NextAction === 'Return to main menu') {
+              promptQuestions(); 
+            } else if (answer.NextAction === 'Quit') {
               console.log('Exiting application...');
-              process.exit(0); // Quit the application
+              process.exit(0); 
             }
           });
       } else if (Prompts.includes('View All Employees')) {
@@ -110,13 +105,11 @@ function promptQuestions() {
           ])
 
           .then((answer) => {
-            if (answer.NextAction === 'Execute another action') {
-              promptQuestions(); // Call the function to prompt the user again
-            } else if (answer.NextAction === 'Return to main menu') {
-              promptQuestions(); // Call the function to display the main menu
-            } else {
+            if (answer.NextAction === 'Return to main menu') {
+              promptQuestions(); 
+            } else if (answer.NextAction === 'Quit') {
               console.log('Exiting application...');
-              process.exit(0); // Quit the application
+              process.exit(0); 
             }
           });
 
@@ -153,10 +146,10 @@ function promptQuestions() {
           ])
           .then((answer) => {
             if (answer.NextAction === 'Return to main menu') {
-              promptQuestions(); // Call the function to prompt the user again
+              promptQuestions(); 
             } else {
               console.log('Exiting application...');
-              process.exit(0); // Quit the application
+              process.exit(0); 
             }
           });
       }

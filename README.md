@@ -40,6 +40,16 @@ To access the aplication, follow instructions below:
 5. Run "Node server.js" in the intergrated terminal 
 6. Follow the prompts in the application
 
+# Example
+
+Image below displays the application's main menu
+
+<img src="./Assets/Images/Employee_tracker_homepage.jpg" alt="Employee Tracker Homepage" width="500" height="600">
+
+Image below displays an example of the prompts and result tables:
+
+<img src="./Assets/Images/Example.png" alt="Employee Tracker Application" width="500" height="600">
+
 
 # Walkthrough Video Link
 https://drive.google.com/file/d/18yBnwn9JLA9baaoQuG6xjZ6TW8gtaLqs/view
